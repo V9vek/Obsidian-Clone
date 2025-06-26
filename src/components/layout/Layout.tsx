@@ -1,17 +1,18 @@
 import { type ReactNode } from "react";
 import ToolBar from "./ToolBar";
-import TabBar from "./TabBar";
 import Sidebar from "./Sidebar";
+import TabBar from "./TabBar";
 import MainPanel from "./MainPanel";
-import NoteEditor from "../notes/NoteEditor";
+import ObsidianEditor from "../editor/ObsidianEditor";
 import { useNoteStore } from "@/store/noteStore";
 
 type LayoutProps = {
   children?: ReactNode;
-}
+};
 
 const Layout = ({ children }: LayoutProps) => {
-  const activeId = useNoteStore(state => state.activeId);
+  const activeId = useNoteStore((state) => state.activeId);
+  const updateNote = useNoteStore((state) => state.updateNote);
 
   return (
     <div className="flex h-screen w-screen bg-background text-foreground overflow-hidden">
@@ -20,11 +21,18 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="flex-1 flex flex-col">
         <TabBar />
         <div className="flex-1">
-          {activeId ? <NoteEditor noteId={activeId} /> : <MainPanel>{children}</MainPanel>}
+          {activeId ? (
+            <ObsidianEditor
+              noteId={activeId}
+              onChange={updateNote}
+            />
+          ) : (
+            <MainPanel>{children}</MainPanel>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Layout; 
+export default Layout;

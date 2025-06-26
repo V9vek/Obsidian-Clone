@@ -16,7 +16,7 @@ const NoteTab = ({ noteId }: NoteTabProps) => {
   return (
     <div
       className={`flex justify-between items-center px-3 h-full cursor-pointer select-none border-r border-border ${
-        isActive ? "bg-[#303030]" : "bg-[#252525] hover:bg-[#2d2d2d]"
+        isActive ? "bg-[#252525]" : "bg-[#303030] hover:bg-[#2d2d2d]"
       } w-[180px]`}
       onClick={() => switchTab(noteId)}
     >

@@ -27,3 +27,49 @@
     animation: none !important;
   }
 }
+
+/* Obsidian editor styling */
+.obsidian-editor {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.obsidian-editor .cm-editor {
+  height: 100%;
+}
+
+.obsidian-editor .cm-scroller {
+  line-height: 1.6;
+  padding: 0.5rem;
+}
+
+/* Custom styling for wiki links */
+.cm-wikilink-brackets {
+  color: #7f848e;
+  opacity: 0.8;
+}
+
+.cm-wikilink-text {
+  color: #bb9af7; /* Purple like Obsidian */
+  font-weight: 500;
+}
+
+/* Hide scrollbar but keep functionality */
+.obsidian-editor .cm-scroller::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.obsidian-editor .cm-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.obsidian-editor .cm-scroller::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.obsidian-editor .cm-scroller::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

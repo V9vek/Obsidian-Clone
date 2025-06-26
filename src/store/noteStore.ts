@@ -8,6 +8,7 @@ export type Note = {
   content: string;
   createdAt: string; // ISO
   updatedAt: string; // ISO
+  links: string[];
 };
 
 type NoteStore = {
@@ -33,7 +34,7 @@ export const useNoteStore = create<NoteStore>()(
         set(state => ({
           notes: {
             ...state.notes,
-            [id]: { id, title: "Untitled", content: "", createdAt: now, updatedAt: now },
+            [id]: { id, title: "Untitled", content: "", createdAt: now, updatedAt: now, links: [] },
           },
           openTabIds: [...state.openTabIds, id],
           activeId: id,
@@ -46,10 +47,11 @@ export const useNoteStore = create<NoteStore>()(
         const firstLine = content.split(/\r?\n/).find(line => line.trim().length > 0) ?? "Untitled";
         const title = firstLine.replace(/^#\s*/, "").slice(0, 64);
         const now = new Date().toISOString();
+        const linkMatches = Array.from(content.matchAll(/\[\[([^\]]+)\]\]/g), m => m[1]);
         set(state => ({
           notes: {
             ...state.notes,
-            [id]: { ...note, content, title, updatedAt: now },
+            [id]: { ...note, content, title, updatedAt: now, links: linkMatches },
           },
         }));
       },

@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
 import { useNoteStore } from "@/store/noteStore";
 
 const Sidebar = () => {
